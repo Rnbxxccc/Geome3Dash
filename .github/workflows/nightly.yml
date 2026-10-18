@@ -16,8 +16,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      # Geode Mod Build with custom CMake definition to fix the fmt library error
       - uses: geode-sdk/build-geode-mod@main
         id: build
+        with:
+          cmake-args: -DFMT_USE_CONSTEXPR=0
 
       - name: Compress Build Output
         run: |
@@ -31,7 +34,7 @@ jobs:
           cd out
           7z a -tzip rainixgd.geome3dash.geode -mx9 *
           
-      # Upload the compressed file (Updated to v4)
+      # Upload the compressed file
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -44,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Download the compressed build artifact (Updated to v4)
+      # Download the compressed build artifact
       - name: Download Build Artifact
         uses: actions/download-artifact@v4
         with:
