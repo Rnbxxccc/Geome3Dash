@@ -16,12 +16,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Geode Mod Build with Global C++ Definitions
+      # Geode Mod Build mit Clang-kompatiblen C-Style Definitions
       - uses: geode-sdk/build-geode-mod@main
         id: build
         env:
-          CXXFLAGS: "/DFMT_USE_CONSTEXPR=0 /DFMT_ENFORCE_COMPILE_STRING=0"
-          CFLAGS: "/DFMT_USE_CONSTEXPR=0 /DFMT_ENFORCE_COMPILE_STRING=0"
+          CXXFLAGS: "-DFMT_USE_CONSTEXPR=0 -DFMT_ENFORCE_COMPILE_STRING=0"
+          CFLAGS: "-DFMT_USE_CONSTEXPR=0 -DFMT_ENFORCE_COMPILE_STRING=0"
 
       - name: Compress Build Output
         run: |
