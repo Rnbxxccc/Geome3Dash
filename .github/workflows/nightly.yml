@@ -30,10 +30,10 @@ jobs:
           cp build/*.dll out/
           cd out
           7z a -tzip rainixgd.geome3dash.geode -mx9 *
-         
-      # Upload the compressed file
+          
+      # Upload the compressed file (Updated to v4)
       - name: Upload Build Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: rainixgd.geome3dash.geode
           path: out/rainixgd.geome3dash.geode
@@ -44,12 +44,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Download the compressed build artifact
+      # Download the compressed build artifact (Updated to v4)
       - name: Download Build Artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: rainixgd.geome3dash.geode
-          path: .
 
       # Create GitHub Release
       - name: Update Development Release
