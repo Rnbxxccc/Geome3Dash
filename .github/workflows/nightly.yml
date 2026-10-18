@@ -16,11 +16,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Geode Mod Build with custom CMake definition to fix the fmt library error
+      # Geode Mod Build with Global C++ Definitions
       - uses: geode-sdk/build-geode-mod@main
         id: build
-        with:
-          cmake-args: -DFMT_USE_CONSTEXPR=0
+        env:
+          CXXFLAGS: "/DFMT_USE_CONSTEXPR=0 /DFMT_ENFORCE_COMPILE_STRING=0"
+          CFLAGS: "/DFMT_USE_CONSTEXPR=0 /DFMT_ENFORCE_COMPILE_STRING=0"
 
       - name: Compress Build Output
         run: |
